@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+.leaflet-container{
+height: 70vh;
+width: 100%;
+z-index: 10;
+}
+
+.hero{
+    background-image: url('./images/pattern-bg-desktop.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    }
+@media(max-width:640px){
+    .hero{
+        background-image: url('./images/pattern-bg-mobile.png');
+        }
+}
+.box{
+    position: absolute;
+    z-index: 100;
+    top: 28%;
+    left: 50%;
+    transform: translate(-50%,-28%);
+}
