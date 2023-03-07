@@ -1,11 +1,18 @@
 
 import React, { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Popup, Marker } from 'react-leaflet';
+import { MapContainer, TileLayer, Popup, Marker,useMap } from 'react-leaflet';
 import AddressDetails from './component/addressDetails';
 import L from 'leaflet';
 import Search from './component/Search';
 
-const DEFAULT_POSITION = [51.505, -0.09]; // default position for the map
+const DEFAULT_POSITION = [61.21785, -149.88657 ]; // default position for the map
+function LocationMarker(e) {
+  const map = useMap();
+
+  useEffect(() => {
+    map.flyTo(e.position, e.zoom);
+  });
+}
 
 const App = () => {
   const [data, setData] = useState({});
@@ -38,8 +45,11 @@ const App = () => {
   useEffect(() => {
     if (data.location) {
       setPosition([data.location.lat, data.location.lng]);
+      console.log(position)
     }
   }, [data]);
+ 
+ 
 
   return (
     <div className='h-screen flex flex-col font-Rubik '>
@@ -48,12 +58,18 @@ const App = () => {
 
       <div className='hero h-1/3 w-full'></div>
       <div className='leaflet-container relative'>
-        <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
-          <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' />
-          {local && <Marker position={[local.lat, local.lng]}>
-            <Popup>A pretty CSS3 popup. &lt;br /&gt; Easily customizable.</Popup>
-          </Marker>}
-        </MapContainer>
+      {
+        local &&   <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
+        <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' />
+        {local && <Marker position={ position}>
+          <Popup>A pretty CSS3 popup. &lt;br /&gt; Easily customizable.</Popup>
+        </Marker>}
+          {
+            local && <LocationMarker position={position} zoom={13} />
+          }
+
+      </MapContainer>
+      }
       </div>
     </div>
   );
