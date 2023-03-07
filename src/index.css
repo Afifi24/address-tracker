@@ -32,7 +32,7 @@ z-index: 10;
     .box{
         position: absolute;
         z-index: 100;
-        top: 35%;
+        top: 40%;
         left: 50%;
         transform: translate(-50%,-28%);
     }
