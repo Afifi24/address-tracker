@@ -33,7 +33,7 @@ const App = () => {
   };
 
   const FetchData = async () => {
-    const data = await fetch(`https://geo.ipify.org/api/v2/country,city?apiKey=at_KWwjqZeeTYfngJe80TviEjdIR9SH6&ipAddress=${search}`);
+    const data = await fetch(`https://geo.ipify.org/api/v2/country,city?apiKey=at_8la7dz6w8qBoFDbogD3xXNBZBm7vL&ipAddress=${search}`);
     const response = await data.json();
     setData(response);
   };
